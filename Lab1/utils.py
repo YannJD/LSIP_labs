@@ -274,9 +274,9 @@ class ParticleFilterInterface:
 
 _tracker_ctor = {'mil': cv2.TrackerMIL_create,
                  'kcf': cv2.TrackerKCF_create,
-                 'tld': cv2.TrackerTLD_create,
-                 'medianflow': cv2.TrackerMedianFlow_create,
-                 'mosse': cv2.TrackerMOSSE_create,
+                 'tld': cv2.legacy.TrackerTLD_create,
+                 'medianflow': cv2.legacy.TrackerMedianFlow_create,
+                 'mosse': cv2.legacy.TrackerMOSSE_create,
                  'goturn': cv2.TrackerGOTURN_create}
     
 def create_face_tracker(name='KCF'):
