@@ -1,2 +1,11 @@
 # Jupyter Notebook
-notebook/__pycache__/
+notebook/__pycache__
+*.__pycache__
+*.pyo
+*.pyc
+# *.log
+# .ipynb_checkpoints
+# notebook/.ipynb_checkpoints
+# notebook/.ipynb_checkpoints/*
+# *.pgm # PGM image files
+# data/* # Data files
