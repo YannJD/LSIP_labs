@@ -1,6 +1,5 @@
 #coding=utf-8
 import cv2
-import cv2.legacy
 import numpy as np
 import itertools
 import matplotlib.pyplot as plt
@@ -211,7 +210,7 @@ class ParticleFilterInterface:
         """
         best_idx = self.weights.argmax()
         best_state = self.state #self.particles[best_idx, :]
-        pt1 = (best_state - np.asarray(self.model.shape[1::-1]) / 2).astype(np.int)
+        pt1 = (best_state - np.asarray(self.model.shape[1::-1]) / 2).astype(np.int64)
         #  pt1 = (self.state - np.array(self.model.shape[1::-1])/2).astype(np.int)
         pt2 = pt1 + np.asarray(self.model.shape[1::-1])
         cv2.rectangle(image,
@@ -230,7 +229,7 @@ class ParticleFilterInterface:
         dist = np.linalg.norm(self.particles - self.state)
         weighted_sum = np.sum(dist * self.weights.reshape((-1, 1)))
         cv2.circle(image,
-                   tuple(self.state.astype(np.int)),
+                   tuple(self.state.astype(np.int64)),
                    int(weighted_sum),
                    (255, 255, 255),
                    1,
@@ -274,10 +273,10 @@ class ParticleFilterInterface:
     
 
 _tracker_ctor = {'mil': cv2.TrackerMIL_create,
-                 'kcf': cv2.legacy.TrackerKCF_create,
-                 'tld': cv2.legacy.TrackerTLD_create,
-                 'medianflow': cv2.legacy.TrackerMedianFlow_create,
-                 'mosse': cv2.legacy.TrackerMOSSE_create,
+                 'kcf': cv2.TrackerKCF_create,
+                 'tld': cv2.TrackerTLD_create,
+                 'medianflow': cv2.TrackerMedianFlow_create,
+                 'mosse': cv2.TrackerMOSSE_create,
                  'goturn': cv2.TrackerGOTURN_create}
     
 def create_face_tracker(name='KCF'):
